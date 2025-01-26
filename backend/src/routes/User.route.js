@@ -10,6 +10,6 @@ const router = Router();
 
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
-router.route("/task").post(verifyJWT, fetchTask);
+router.route("/task").get(verifyJWT, fetchTask);
 
 export default router;
