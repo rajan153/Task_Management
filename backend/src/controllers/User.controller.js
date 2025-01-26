@@ -88,6 +88,7 @@ export const loginUser = async (req, res) => {
     return res.status(200).cookie("accessToken", accessToken, options).json({
       message: "Login Successfully",
       user: isUserExists,
+      accessToken,
     });
   } catch (error) {
     return res.status(500).json({
@@ -103,7 +104,7 @@ export const fetchTask = async (req, res) => {
 
     return res.status(200).json({
       message: "Fetch Tasks",
-      tasks,
+      tasks: tasks.todos,
     });
   } catch (error) {
     return res.status(500).json({
