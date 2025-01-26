@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { Task } from "../models/Task.model.js";
 import { User } from "../models/User.model.js";
 
@@ -15,7 +14,7 @@ export const createTask = async (req, res) => {
 
     const newTask = await Task.create({ title });
 
-    await User.findByIdAndUpdate(
+    const updatedTask = await User.findByIdAndUpdate(
       _id,
       {
         $push: { todos: newTask._id },
@@ -24,6 +23,7 @@ export const createTask = async (req, res) => {
     );
     return res.status(200).json({
       message: "Task is create",
+      tasks: updatedTask,
     });
   } catch (error) {
     return res.status(500).json({
